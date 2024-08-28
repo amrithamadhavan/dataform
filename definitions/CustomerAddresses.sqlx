@@ -1,0 +1,4 @@
+config { type: "operations"}
+
+INSERT INTO pp_tables.CustomerAddresses (address_id, customer_id, address_line1, city, state, zip_code, country)
+VALUES (1, 1, '123 Main St', 'Anytown', 'CA', '91234', 'USA');

@@ -1,0 +1,14 @@
+config {
+  type: "operations", 
+  dependencies : ["Customers","CustomerOrders"]
+}
+
+truncate table pp_tables.CustomerOrderSummary;
+INSERT INTO pp_tables.CustomerOrderSummary
+SELECT 
+    co.customer_id, 
+    COUNT(co.order_id) AS total_orders, 
+    SUM(co.total_amount) AS total_amount_spent
+FROM pp_tables.CustomerOrders AS co
+GROUP BY co.customer_id;
+

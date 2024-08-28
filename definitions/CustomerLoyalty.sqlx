@@ -1,0 +1,14 @@
+config { type: "operations",
+dependencies : ["CustomerOrderSummary"] }
+
+
+truncate table pp_tables.CustomerLoyalty;
+INSERT INTO pp_tables.CustomerLoyalty
+SELECT 
+    cos.customer_id,
+    CASE
+        WHEN cos.total_amount_spent >= 1000 THEN 'Gold'
+        WHEN cos.total_amount_spent >= 500 THEN 'Silver'
+        ELSE 'Bronze'
+    END AS loyalty_tier
+FROM pp_tables.CustomerOrderSummary AS cos;

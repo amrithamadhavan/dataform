@@ -1,0 +1,5 @@
+defaultProject: dataform-experimentation
+defaultLocation: us
+defaultDataset: pp_tables
+defaultAssertionDataset: dataform_assertions
+dataformCoreVersion: 3.0.0

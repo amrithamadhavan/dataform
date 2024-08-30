@@ -6,4 +6,4 @@ INSERT INTO ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.d
 SELECT DISTINCT c.customer_id, c.first_name, c.last_name
 FROM ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.Customers AS c
 JOIN ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.CustomerOrders AS co ON c.customer_id = co.customer_id
-WHERE co.order_date >= DATE_SUB('${dataform.projectConfig.vars.current_date1}', INTERVAL 30 DAY);
+WHERE co.order_date >= DATE_SUB('${dataform.projectConfig.vars.current_date}', INTERVAL 30 DAY);

@@ -2,8 +2,8 @@ config { type: "operations",
 dependencies : ["CustomerOrderSummary"] }
 
 
-truncate table pp_tables.CustomerLoyalty;
-INSERT INTO pp_tables.CustomerLoyalty
+truncate table ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.CustomerLoyalty;
+INSERT INTO ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.CustomerLoyalty
 SELECT 
     cos.customer_id,
     CASE
@@ -11,4 +11,4 @@ SELECT
         WHEN cos.total_amount_spent >= 500 THEN 'Silver'
         ELSE 'Bronze'
     END AS loyalty_tier
-FROM pp_tables.CustomerOrderSummary AS cos;
+FROM ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.CustomerOrderSummary AS cos;

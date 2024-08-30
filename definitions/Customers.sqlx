@@ -1,4 +1,4 @@
 config { type: "operations"}
 
-INSERT INTO pp_tables.Customers (customer_id, first_name, last_name, email, phone_number, registration_date)
+INSERT INTO ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.Customers (customer_id, first_name, last_name, email, phone_number, registration_date)
 VALUES (1, 'John', 'Doe', 'john.doe@example.com', '555-123-4567', '2023-01-15');

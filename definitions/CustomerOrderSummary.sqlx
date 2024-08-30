@@ -3,12 +3,12 @@ config {
   dependencies : ["Customers","CustomerOrders"]
 }
 
-truncate table pp_tables.CustomerOrderSummary;
-INSERT INTO pp_tables.CustomerOrderSummary
+truncate table ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.CustomerOrderSummary;
+INSERT INTO ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.CustomerOrderSummary
 SELECT 
     co.customer_id, 
     COUNT(co.order_id) AS total_orders, 
     SUM(co.total_amount) AS total_amount_spent
-FROM pp_tables.CustomerOrders AS co
+FROM ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.CustomerOrders AS co
 GROUP BY co.customer_id;
 

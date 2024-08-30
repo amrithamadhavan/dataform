@@ -1,9 +1,9 @@
 config { type: "operations",
 dependencies : ["Customers","CustomerOrders"] }
 
-truncate table pp_tables.ActiveCustomers;
-INSERT INTO pp_tables.ActiveCustomers
+truncate table ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.ActiveCustomers;
+INSERT INTO ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.ActiveCustomers
 SELECT DISTINCT c.customer_id, c.first_name, c.last_name
-FROM pp_tables.Customers AS c
-JOIN pp_tables.CustomerOrders AS co ON c.customer_id = co.customer_id
+FROM ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.Customers AS c
+JOIN ${dataform.projectConfig.defaultDatabase}.${dataform.projectConfig.defaultSchema}.CustomerOrders AS co ON c.customer_id = co.customer_id
 WHERE co.order_date >= DATE_SUB('${dataform.projectConfig.vars.current_date1}', INTERVAL 30 DAY);
